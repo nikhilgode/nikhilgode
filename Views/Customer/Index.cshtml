@@ -1,0 +1,28 @@
+﻿@model List<CityCustomerMVC.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>THESE ARE OUR CUSTOMERS</h2>
+
+
+
+<table border="1">
+
+    @* <ul id="customerList">  *@
+  
+    @foreach (var cust in Model)
+    { <tr >
+         <td> @cust.Name  </td>  <td> @cust.city.Name </td>
+      </tr>
+    }
+    @*  </ul>  *@
+</table>
+
+
+
+
+
+
+
+
