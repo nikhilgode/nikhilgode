@@ -10,14 +10,27 @@
 <table border="1">
 
     @* <ul id="customerList">  *@
-  
+
     @foreach (var cust in Model)
-    { <tr >
-         <td> @cust.Name  </td>  <td> @cust.city.Name </td>
-      </tr>
+    {
+        <tr>
+            <td> @cust.Name  </td>
+            
+            <td> @cust.city.Id </td>
+            <td>@cust.DateTime </td>
+            <td> @Html.ActionLink("EDIT","EditCustomer","Customer",new { id= cust.Id,id2=cust.city.Id},null)</td>
+        @*   <td> a href="@Url.Action("EditCustomer", "Customer", new { id = cust.Id })">Edit</a></td>*@
+        </tr>
     }
     @*  </ul>  *@
 </table>
+
+@using (Html.BeginForm("NewCustomerForm", "Customer", FormMethod.Get))
+{
+    <button type="submit" class="btn btn-lg btn-primary">New Customer Registration</button>
+};
+
+
 
 
 
