@@ -58,15 +58,15 @@ namespace CityCustomerMVC.Controllers
 
 
 
-         //   if (!ModelState.IsValid)
-         //   {
+           //if (!ModelState.IsValid)
+           //{
 
-//
-    //            return View("NewCustomerForm");
-    //        }
+
+           //return View("NewCustomerForm");
+           //}
 
             try
-                {
+            {
                 var selectedCity = context.cities.FirstOrDefault(c => c.Id == c1.customer.city.Id);
 
                 // Assign the selected city to the customer's city property
@@ -77,7 +77,7 @@ namespace CityCustomerMVC.Controllers
 
                 context.SaveChanges();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Console.WriteLine(ex);
             }
@@ -114,6 +114,7 @@ namespace CityCustomerMVC.Controllers
             
         }
 
+        
 
         public ActionResult SaveEditedCustomer(int id, int id2, String name)
         {

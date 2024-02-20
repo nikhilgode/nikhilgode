@@ -7,7 +7,7 @@
 
 
 
-<table border="1">
+<table id="customer" border="1">
 
     @* <ul id="customerList">  *@
 
@@ -15,11 +15,15 @@
     {
         <tr>
             <td> @cust.Name  </td>
-            
+
             <td> @cust.city.Id </td>
             <td>@cust.DateTime </td>
-            <td> @Html.ActionLink("EDIT","EditCustomer","Customer",new { id= cust.Id,id2=cust.city.Id},null)</td>
-        @*   <td> a href="@Url.Action("EditCustomer", "Customer", new { id = cust.Id })">Edit</a></td>*@
+            @*      <td> @Html.ActionLink("EDIT","EditCustomer","Customer",new { id= cust.Id,id2=cust.city.Id},null)</td>   *@
+            @*   <td> a href="@Url.Action("EditCustomer", "Customer", new { id = cust.Id })">Edit</a></td>*@
+
+            <td>
+                <button data-customer-id111="@cust.Id" class="btn-link js-details">SHOW DETAILS</button>
+            </td>
         </tr>
     }
     @*  </ul>  *@
@@ -30,7 +34,87 @@
     <button type="submit" class="btn btn-lg btn-primary">New Customer Registration</button>
 };
 
+@section scripts
+{
+    <script>
+            $(document).ready(function () {
+                $("#customer .js-details").on("click", function () {
+                    if (confirm("you want to see account details...?")) {
+                        $.ajax({
+                            url: "/api/customers/" + $(this).attr("data-customer-id111"),
+                            method: "get",
+                            success: function () {
+                                console.log("success");
+                            }
+                        })
+                    }
+                });
+            });
+        </script>
 
+
+    @*<script>
+
+            $(document).ready(function () {
+                $("#customer .js-details").on("click", function () {
+                    bootbox.confirm("You want to see account details...?", function () {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + $(this).attr("data-customer-id111"),
+                                method: "GET",
+                                success: function () {
+                                    console.log("success");
+                                }
+                            })
+                        }
+                    })
+                });
+            });
+        </script>*@
+
+    @*<script>
+            $(document).ready(function () {
+                $("#customer .js-details").on("click", function () {
+                    var $clickedElement = $(this); // Store reference to the clicked element
+                    bootbox.confirm("You want to see account details...?", function (result) { // Pass 'result' parameter
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + $clickedElement.attr("data-customer-id111"), // Use stored reference to the clicked element
+                                method: "GET",
+                                success: function () {
+                                    console.log("success");
+                                }
+                            });
+                        }
+                    });
+                });
+            });
+        </script>*@
+
+
+
+
+    @*<script>
+        $(document).ready(function () {
+            $("#customer .js-details").on("click", function () {
+                var $clickedElement = $(this); // Store reference to the clicked element
+                bootbox.confirm("You want to see account details...?", function (result) { // Pass 'result' parameter
+                    if (result) {
+                        $.ajax({
+                            url: "/api/customers/" + $clickedElement.attr("data-customer-id111"), // Use stored reference to the clicked element
+                            method: "GET",
+                            success: function () {
+                                console.log("success");
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>*@
+
+
+}
 
 
 

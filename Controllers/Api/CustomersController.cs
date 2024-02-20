@@ -74,50 +74,76 @@ namespace CityCustomerMVC.Controllers.Api
             }
 
             ExistingCusomer.Name = c2.Name;
-            ExistingCusomer.city = c2.city;
+            ExistingCusomer.city.Id = c2.city.Id;
+            ExistingCusomer.city.Name = c2.city.Name;
 
             _context.SaveChanges();
         }
 
         
+        //[HttpDelete]
+        //[System.Web.Http.Route("api/Customers/{id}")]
+        //public void DeleteCustomer(int id) 
+        //{
+        //    var cus = _context.customers.SingleOrDefault(x => x.Id == id);
+
+        //    if (cus == null)
+        //    {
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+
+        //    }
+
+        //    _context.customers.Remove(cus);
+        //    _context.SaveChanges();
+
+             
+        //}
+
+
         [HttpDelete]
- 
-        public void DeleteCustomer(int id) 
+        public HttpResponseMessage DeleteUser(int id)
         {
-            var cus = _context.customers.SingleOrDefault(x => x.Id == id);
 
-            if (cus == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+          
+            
+                Customer user = _context.customers.Find(id);
+                if (user != null)
+                {
+                    _context.customers.Remove(user);
+                    _context.SaveChanges();
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK);
+                    return response;
+                }
+                else
+                {
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.NotFound);
+                    return response;
+                }
+            
+        }
+                //-----------------------USING AUTOMAPPER--------------------------//
+
+
+                // public IEnumerable<CustomerDto> GetCustomers1()
+                //{
+                //    return _context.customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
+                //}
+
+
+                //public CustomerDto GetCustomer1(int id)
+                //{
+                //    var cus = _context.customers.SingleOrDefault(x => x.Id == id);
+
+                //    if (cus == null)
+                //    {
+                //        throw new HttpResponseException(HttpStatusCode.NotFound);
+                //    }
+
+                //    return Mapper.Map<Customer,CustomerDto>(cus) ;
+                //}
+
+
+
+
             }
-
-            _context.customers.Remove(cus);
-            _context.SaveChanges();
-        }
-
-        //-----------------------USING AUTOMAPPER--------------------------//
-
-
-         public IEnumerable<CustomerDto> GetCustomers1()
-        {
-            return _context.customers.ToList().Select(Mapper.Map<Customer, CustomerDto>);
-        }
-
-
-        public CustomerDto GetCustomer1(int id)
-        {
-            var cus = _context.customers.SingleOrDefault(x => x.Id == id);
-
-            if (cus == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-
-            return Mapper.Map<Customer,CustomerDto>(cus) ;
-        }
-
-
-
-
-    }
 }
