@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Code1stMVC.Models
+namespace RentalMovie.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
