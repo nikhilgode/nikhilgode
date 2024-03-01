@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
-namespace RentalMovie.Models
+namespace FilterPrac1st.Models
 {
     public class IndexViewModel
     {

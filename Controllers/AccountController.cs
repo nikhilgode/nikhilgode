@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using RentalMovie.Models;
+using FilterPrac1st.Models;
 
-namespace RentalMovie.Controllers
+namespace FilterPrac1st.Controllers
 {
     [Authorize]
     public class AccountController : Controller
